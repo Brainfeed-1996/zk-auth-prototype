@@ -1,0 +1,19 @@
+# Node
+node_modules/
+*.log
+.env
+
+# ZK artifacts (generated)
+artifacts/
+*.r1cs
+*.wasm
+*.zkey
+verification_key.json
+proof.json
+public.json
+
+# OS/Editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
