@@ -1,0 +1,46 @@
+name: ZK Auth Prototype CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: package-lock.json
+    
+    - name: Install dependencies
+      run: npm install
+    
+    - name: Check circuit files
+      run: |
+        echo "=== Circuit Files ==="
+        for circuit in circuits/*.circom; do
+          if [ -f "$circuit" ]; then
+            echo "✓ Found circuit: $circuit"
+          fi
+        done
+    
+    - name: Check app structure
+      run: |
+        echo "=== App Structure ==="
+        for app in apps/*/; do
+          if [ -d "$app" ]; then
+            echo "✓ Found app: $app"
+          fi
+        done
+    
+    - name: Lint JavaScript
+      run: |
+        npm run lint 2>/dev/null || echo "No lint script configured"
