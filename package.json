@@ -2,17 +2,22 @@
   "name": "zk-auth-prototype",
   "private": true,
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Zero-knowledge authentication prototype using Circom + SnarkJS",
   "scripts": {
     "server": "node apps/server/src/index.js",
     "client": "node apps/client/src/index.js",
     "zk:setup": "node scripts/zk-setup.mjs",
-    "zk:prove": "node scripts/zk-prove.mjs"
+    "zk:prove": "node scripts/zk-prove.mjs",
+    "test": "vitest run"
   },
   "dependencies": {
     "express": "^4.19.2",
     "node-fetch": "^3.3.2",
     "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "supertest": "^7.1.1",
+    "vitest": "^2.0.5"
   }
 }
